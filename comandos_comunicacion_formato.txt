@@ -1,0 +1,33 @@
+para enviar se envia el comando en el siguiente formato. Todo en un string
+compuesto de caracteres numericos (a caracteres ASCII)
+
+3 caracteres para la variable pulsos de 0 a 100
+Ej: "000", "067", "100", etc.
+
+seguido de 5 caracteres para la variable remanente (la cual setea la frecuencia)
+debe ir rango desde 20000 (para lento) hasta 200 para rapido. OJO: considere que esta variable
+cambia la frecunecia exponencialemnte. rem_aux = exp(9.9042 - 0.0045*conv);  
+Ej: "20000", "06700", "00200", etc.
+
+
+finalmente seguido de 5 caracteres que setean el desfase 
+debe ir rango desde 0 (para 0 desfase) hasta el valor que tenga remanente (variable
+anterior).
+Ej: "00000", "20000", "06700", "00200", etc.
+
+el mensaje debe terminar con el delimitador caracter 'k', en ASCII. 
+
+
+Ejemplo de una trama de envio: pulsos = 20; remanente = 500 y desfase = 100
+"0200050000100k"
+
+El arduino responde:
+
+El buffer uart recibido es: 0200050000100
+pulsos: 20
+remanente: 500
+desfase: 100
+
+
+Enviar la trama con una frecuencia maxima de 200ms. Es decir no enviar mas rapido que cada
+200ms. debido a la latencia del procesamiento. 
